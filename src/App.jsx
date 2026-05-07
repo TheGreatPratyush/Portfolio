@@ -1,8 +1,62 @@
 import "./index.css";
 import logo2 from "./assets/logo2.png";
-import RippleGrid from "./components/RippleGrid";
+import background from "./assets/background.png";
+import { useEffect } from "react";
 
 export default function App() {
+
+  useEffect(() => {
+
+    const audio = new Audio("/intro.mp3");
+
+    audio.volume = 0;
+
+    let started = false;
+
+    const startAudio = async () => {
+
+      if(started) return;
+
+      started = true;
+
+      try{
+
+        await audio.play();
+
+        let volume = 0;
+
+        const fade = setInterval(() => {
+
+          if(volume < 0.35){
+
+            volume += 0.02;
+
+            audio.volume = volume;
+
+          } else {
+
+            clearInterval(fade);
+          }
+
+        }, 120);
+
+      } catch(err){
+
+        console.log(err);
+      }
+
+      window.removeEventListener(
+        "pointerdown",
+        startAudio
+      );
+    };
+
+    window.addEventListener(
+      "pointerdown",
+      startAudio
+    );
+
+  }, []);
 
   return (
 
@@ -10,19 +64,10 @@ export default function App() {
 
       <div className="gridBackground">
 
-        <RippleGrid
-          enableRainbow={true}
-          gridColor="#8B7355"
-          rippleIntensity={0.15}
-          gridSize={19}
-          gridThickness={10}
-          mouseInteraction={true}
-          mouseInteractionRadius={0.9}
-          opacity={0.8}
-          fadeDistance={4}
-          vignetteStrength={6}
-          glowIntensity={0.04}
-          gridRotation={360}
+        <img
+          src={background}
+          alt=""
+          className="w-full h-full object-cover opacity-55 scale-110 blur-[0.4px] brightness-75"
         />
 
       </div>
@@ -44,7 +89,7 @@ export default function App() {
           </h1>
 
           <p className="subtitle">
-            FRONTEND DEVELOPER
+            DEVELOPER ....
           </p>
 
         </div>

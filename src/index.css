@@ -1,0 +1,318 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,
+body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#050505;
+  font-family:'Geist Variable', sans-serif;
+}
+
+#root{
+  width:100%;
+  height:100%;
+}
+
+.main{
+  width:100vw;
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+  background:#050505;
+}
+
+.gridBackground{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:1;
+
+  transform:scale(1.8);
+
+  opacity:0.75;
+
+  filter:blur(1px);
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  z-index:2;
+
+  background:
+  radial-gradient(
+    circle at center,
+    rgba(0,0,0,0.08),
+    rgba(0,0,0,0.92)
+  );
+}
+
+.container{
+  position:absolute;
+  inset:0;
+
+  z-index:10;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  padding-bottom:40px;
+}
+
+.logoWrapper{
+
+  width:100%;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+}
+
+.logo{
+
+  width:180px;
+
+  opacity:0;
+
+  transform:scale(0.72);
+
+  animation:
+  cinematicReveal 2.8s cubic-bezier(0.22,1,0.36,1) forwards,
+  moveUp 1.2s ease-in-out 3s forwards,
+  topBounce 1s ease-in-out 4.2s forwards;
+
+  filter:
+  drop-shadow(0 0 18px rgba(255,215,120,0.08))
+  drop-shadow(0 0 40px rgba(255,215,120,0.03));
+}
+
+.title{
+
+  margin-top:-6px;
+
+  margin-left:0.22em;
+
+  color:white;
+
+  font-size:4.2rem;
+
+  font-weight:600;
+
+  letter-spacing:0.22em;
+
+  text-align:center;
+
+  opacity:0;
+
+  transform:translateY(20px);
+
+  animation:
+  textReveal 1.8s cubic-bezier(0.22,1,0.36,1) 3.2s forwards;
+
+  text-shadow:
+  0 0 18px rgba(255,255,255,0.05);
+}
+
+.subtitle{
+
+  margin-top:8px;
+
+  color:rgba(255,255,255,0.48);
+
+  font-size:0.9rem;
+
+  letter-spacing:0.28em;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  width:23ch;
+
+  text-align:center;
+
+  border-right:1px solid rgba(255,255,255,0.25);
+
+  animation:
+  typing 2.5s steps(24,end) 4.4s forwards,
+  blink 0.8s infinite 4.4s;
+}
+
+@keyframes cinematicReveal{
+
+  0%{
+
+    opacity:0;
+
+    transform:
+    scale(0.72);
+
+    filter:
+    blur(28px)
+    brightness(0.3);
+  }
+
+  35%{
+
+    opacity:0.18;
+
+    transform:
+    scale(0.8);
+
+    filter:
+    blur(18px)
+    brightness(0.5);
+  }
+
+  65%{
+
+    opacity:0.75;
+
+    transform:
+    scale(0.94);
+
+    filter:
+    blur(6px)
+    brightness(0.9);
+  }
+
+  82%{
+
+    opacity:1;
+
+    transform:
+    scale(1.03);
+
+    filter:
+    blur(0px)
+    brightness(1);
+  }
+
+  92%{
+
+    transform:
+    scale(0.992);
+  }
+
+  100%{
+
+    opacity:1;
+
+    transform:
+    scale(1);
+
+    filter:
+    blur(0px)
+    brightness(1);
+  }
+}
+
+@keyframes moveUp{
+
+  0%{
+    transform:
+    translateY(0px)
+    scale(1);
+  }
+
+  100%{
+    transform:
+    translateY(-38px)
+    scale(1);
+  }
+}
+
+@keyframes topBounce{
+
+  0%{
+    transform:
+    translateY(-38px)
+    scale(1);
+  }
+
+  35%{
+    transform:
+    translateY(-48px)
+    scale(1.01);
+  }
+
+  60%{
+    transform:
+    translateY(-34px)
+    scale(0.996);
+  }
+
+  100%{
+    transform:
+    translateY(-38px)
+    scale(1);
+  }
+}
+
+@keyframes textReveal{
+
+  0%{
+
+    opacity:0;
+
+    transform:
+    translateY(20px);
+
+    filter:
+    blur(8px);
+  }
+
+  100%{
+
+    opacity:1;
+
+    transform:
+    translateY(0px);
+
+    filter:
+    blur(0px);
+  }
+}
+
+@keyframes typing{
+
+  from{
+    width:0;
+  }
+
+  to{
+    width:100%;
+  }
+}
+
+@keyframes blink{
+
+  50%{
+    border-color:transparent;
+  }
+}
+
+@theme inline {
+  --font-heading:var(--font-sans);
+  --font-sans:'Geist Variable', sans-serif;
+}

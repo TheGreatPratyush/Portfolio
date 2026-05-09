@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #101010 0%,
+      #000000 100%
+    );
+}
+
+.effects-shadow {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 42%,
+      rgba(0,0,0,0.32) 100%
+    );
+
+  z-index: 100;
+
+  pointer-events: none;
+}
+
+.background-image {
+  position: absolute;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.22);
+
+  user-select: none;
+
+  pointer-events: none;
+
+  backface-visibility: hidden;
+
+  will-change:
+    transform,
+    opacity;
+
+  image-rendering: auto;
+
+  opacity: 1;
+}
